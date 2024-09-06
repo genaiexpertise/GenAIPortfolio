@@ -10,6 +10,7 @@ from langchain_core.messages import HumanMessage
 from dependencies import check_password
 
 _ = load_dotenv(find_dotenv())
+os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY.OPENAI_API_KEY
 openai_api_key = os.environ["OPENAI_API_KEY"]
 
 chatbot = ChatOpenAI(model="gpt-3.5-turbo")

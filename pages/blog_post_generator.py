@@ -7,6 +7,7 @@ import os
 from dependencies import check_password
 
 _ = load_dotenv(find_dotenv())
+os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY.OPENAI_API_KEY
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 

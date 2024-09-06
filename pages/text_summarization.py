@@ -12,6 +12,7 @@ from dependencies import check_password
 
 
 _ = load_dotenv(find_dotenv())
+os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY.OPENAI_API_KEY
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 
@@ -36,7 +37,7 @@ st.set_page_config(
 
 if not check_password():
     st.stop()
-    
+
 st.title("Writing Text Summarization")
 
 txt_input = st.text_area(

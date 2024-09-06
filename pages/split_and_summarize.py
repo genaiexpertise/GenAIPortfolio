@@ -12,6 +12,7 @@ from dependencies import check_password
 
 
 _ = load_dotenv(find_dotenv())
+os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY.OPENAI_API_KEY
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 #LLM and key loading function
@@ -25,7 +26,7 @@ st.set_page_config(page_title="AI Long Text Summarizer")
 
 if not check_password():
     st.stop()
-    
+
 st.header("AI Long Text Summarizer")
 
 #Intro: instructions
