@@ -14,6 +14,12 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 st.set_page_config(
     page_title = "Blog Post Generator"
 )
+
+st.logo(
+    'assets/logo.png',
+    link="https://genaiexpertise.com",
+    icon_image="assets/icon.png",
+)
 if not check_password():
     st.stop()
 

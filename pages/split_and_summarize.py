@@ -24,6 +24,12 @@ def load_LLM(openai_api_key):
 #Page title and header
 st.set_page_config(page_title="AI Long Text Summarizer")
 
+st.logo(
+    'assets/logo.png',
+    link="https://genaiexpertise.com",
+    icon_image="assets/icon.png",
+)
+
 if not check_password():
     st.stop()
 

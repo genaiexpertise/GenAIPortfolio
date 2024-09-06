@@ -19,6 +19,12 @@ parser = StrOutputParser()
 
 st.set_page_config(page_title="AI Translator")
 
+st.logo(
+    'assets/logo.png',
+    link="https://genaiexpertise.com",
+    icon_image="assets/icon.png",
+)
+
 if not check_password():
     st.stop()
 

@@ -1,5 +1,5 @@
 import streamlit as st
-from langchain import PromptTemplate
+from langchain_core.prompts import PromptTemplate 
 from langchain_openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
 import os
@@ -57,13 +57,24 @@ prompt = PromptTemplate(
 ####################
 #### STREAMLIT #####
 ####################
+
 st.set_page_config(
     page_title="RAGApps",
     page_icon="🧊",
     layout="centered",
     initial_sidebar_state="expanded",
-    menu_items=None,
+    menu_items={
+        "Get Help": "https://genaiexpertise.com/contact/",    
+        "Report a bug": "https://github.com/genaiexpertise/RAGApps/issues",
+        "About": "https://genaiexpertise.com",
+    },
 )
+st.logo(
+    'assets/logo.png',
+    link="https://genaiexpertise.com",
+    icon_image="assets/icon.png",
+)
+
 
 if not check_password():
     st.stop()

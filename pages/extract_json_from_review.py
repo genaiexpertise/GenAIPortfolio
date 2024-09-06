@@ -62,6 +62,12 @@ def load_LLM(openai_api_key):
 #Page title and header
 st.set_page_config(page_title="Extract Key Information from Product Reviews")
 
+st.logo(
+    'assets/logo.png',
+    link="https://genaiexpertise.com",
+    icon_image="assets/icon.png",
+)
+
 if not check_password():
     st.stop()
     

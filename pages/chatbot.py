@@ -31,6 +31,12 @@ chatbot_with_message_history = RunnableWithMessageHistory(
 
 st.set_page_config(page_title="AI Chatbot")
 
+st.logo(
+    'assets/logo.png',
+    link="https://genaiexpertise.com",
+    icon_image="assets/icon.png",
+)
+
 if not check_password():
     st.stop()
 
