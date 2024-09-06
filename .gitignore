@@ -1,3 +1,5 @@
 .env 
-.streamlit 
+.streamlit/secrets.toml 
 .ipynb_checkpoints 
+
+notebooks/data/
