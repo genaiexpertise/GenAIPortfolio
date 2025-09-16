@@ -1,67 +1,17 @@
 import streamlit as st
-from langchain_core.prompts import PromptTemplate 
-from langchain_openai import OpenAI
-from dotenv import load_dotenv, find_dotenv
-import os
+from pathlib import Path
+import sys
+
+# Add the current directory to Python path for imports
+sys.path.append(str(Path(__file__).parent))
 
 from dependencies import check_password
 
-_ = load_dotenv(find_dotenv())
-os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY.OPENAI_API_KEY
-openai_api_key = os.environ["OPENAI_API_KEY"]
-template = """
-    Below is a draft text that may be poorly worded.
-    Your goal is to:
-    - Properly redact the draft text
-    - Convert the draft text to a specified tone
-    - Convert the draft text to a specified dialect
-
-    Here are some examples different Tones:
-    - Formal: Greetings! OpenAI has announced that Sam Altman is rejoining the company as its Chief Executive Officer. After a period of five days of conversations, discussions, and deliberations, the decision to bring back Altman, who had been previously dismissed, has been made. We are delighted to welcome Sam back to OpenAI.
-    - Informal: Hey everyone, it's been a wild week! We've got some exciting news to share - Sam Altman is back at OpenAI, taking up the role of chief executive. After a bunch of intense talks, debates, and convincing, Altman is making his triumphant return to the AI startup he co-founded.  
-
-    Here are some examples of words in different dialects:
-    - American: French Fries, cotton candy, apartment, garbage, \
-        cookie, green thumb, parking lot, pants, windshield
-    - British: chips, candyfloss, flag, rubbish, biscuit, green fingers, \
-        car park, trousers, windscreen
-
-    Example Sentences from each dialect:
-    - American: Greetings! OpenAI has announced that Sam Altman is rejoining the company as its Chief Executive Officer. After a period of five days of conversations, discussions, and deliberations, the decision to bring back Altman, who had been previously dismissed, has been made. We are delighted to welcome Sam back to OpenAI.
-    - British: On Wednesday, OpenAI, the esteemed artificial intelligence start-up, announced that Sam Altman would be returning as its Chief Executive Officer. This decisive move follows five days of deliberation, discourse and persuasion, after Altman's abrupt departure from the company which he had co-established.
-
-    Please start the redaction with a warm introduction. Add the introduction \
-        if you need to.
-    
-    Below is the draft text, tone, and dialect:
-    DRAFT: {draft}
-    TONE: {tone}
-    DIALECT: {dialect}
-
-    YOUR {dialect} RESPONSE:
-"""
-
-#LLM and key loading function
-def load_LLM(openai_api_key):
-    """Logic for loading the chain you want to use should go here."""
-    # Make sure your openai_api_key is set as an environment variable
-    llm = OpenAI(temperature=.7, openai_api_key=openai_api_key)
-    return llm
-
-#PromptTemplate variables definition
-prompt = PromptTemplate(
-    input_variables=["tone", "dialect", "draft"],
-    template=template,
-)
-
-####################
-#### STREAMLIT #####
-####################
-
+# Page configuration
 st.set_page_config(
-    page_title="RAGApps",
-    page_icon="🧊",
-    layout="centered",
+    page_title="GenAI Expertise - AI Solutions Portfolio",
+    page_icon="🤖",
+    layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
         "Get Help": "https://genaiexpertise.com/contact/",    
@@ -69,70 +19,272 @@ st.set_page_config(
         "About": "https://genaiexpertise.com",
     },
 )
-st.logo(
-    'assets/logo.png',
-    link="https://genaiexpertise.com",
-    icon_image="assets/icon.png",
-)
 
+# Custom CSS for better visual appeal
+st.markdown("""
+<style>
+    .main-header {
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        color: white;
+        text-align: center;
+    }
+    .feature-card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        border-left: 4px solid #667eea;
+        margin: 1rem 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .demo-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin: 1rem 0;
+    }
+    .tech-badge {
+        background: #e3f2fd;
+        color: #1976d2;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        margin: 0.2rem;
+        display: inline-block;
+    }
+</style>
+""", unsafe_allow_html=True)
 
+# Logo and header
+if Path("assets/logo.png").exists():
+    st.logo(
+        'assets/logo.png',
+        link="https://genaiexpertise.com",
+        icon_image="assets/icon.png" if Path("assets/icon.png").exists() else None,
+    )
+
+# Authentication check
 if not check_password():
     st.stop()
 
-st.header("Redact and Convert Text to a Specified Tone and Dialect")
+# Main header
+st.markdown("""
+<div class="main-header">
+    <h1>🤖 GenAI Expertise Portfolio</h1>
+    <p>Advanced AI Solutions for Modern Businesses</p>
+    <p><em>Showcasing cutting-edge Language Models, RAG Systems, and Intelligent Applications</em></p>
+</div>
+""", unsafe_allow_html=True)
 
-#Intro: instructions
-col1, col2 = st.columns(2)
+# Introduction section
+col1, col2 = st.columns([2, 1])
 
 with col1:
-    st.markdown("Redact the text below. Convert the text to a specified tone and dialect.")
+    st.markdown("""
+    ## Welcome to Our AI Solutions Showcase
+    
+    Explore our comprehensive suite of AI-powered applications designed to transform your business operations. 
+    Each demo represents production-ready technology that can be customized for your specific needs.
+    
+    **🎯 What You'll Discover:**
+    - Advanced Natural Language Processing
+    - Intelligent Document Analysis
+    - Multi-language Support
+    - Real-time AI Interactions
+    - Quality Assurance Systems
+    """)
 
 with col2:
-    st.write("Contact with [GenAIExpertise](https://genaiexpertise.com) to build your AI Projects")
+    st.markdown("""
+    ### 🚀 Quick Start
+    Navigate through our demos using the sidebar. Each application includes:
+    - **Live Demo**: Interactive experience
+    - **Use Cases**: Business applications
+    - **Technical Details**: Implementation insights
+    
+    ### 📞 Ready to Build?
+    [Contact GenAI Expertise](https://genaiexpertise.com/contact/) 
+    to discuss your custom AI solution.
+    """)
 
-# input 
-st.markdown("### Enter the text you want to re-write")
+# Technology stack
+st.markdown("---")
+st.markdown("## 🛠️ Technology Stack")
 
-def get_draft():
-    draft_text = st.text_area(label="Text", label_visibility='collapsed', placeholder="Your Text...", key="draft_input")
-    return draft_text
+col1, col2, col3 = st.columns(3)
 
-draft_input = get_draft()
-
-if len(draft_input.split(" ")) > 700:
-    st.write("Please enter a shorter text. The maximum length is 700 words.")
-    st.stop()
-
-# Prompt template tunning options
-col1, col2 = st.columns(2)
 with col1:
-    option_tone = st.selectbox(
-        'Which tone would you like your redaction to have?',
-        ('Formal', 'Informal'))
-    
+    st.markdown("""
+    **Core AI Technologies:**
+    <div class="tech-badge">OpenAI GPT</div>
+    <div class="tech-badge">LangChain</div>
+    <div class="tech-badge">Vector Databases</div>
+    <div class="tech-badge">RAG Systems</div>
+    """, unsafe_allow_html=True)
+
 with col2:
-    option_dialect = st.selectbox(
-        'Which English Dialect would you like?',
-        ('American', 'British'))
+    st.markdown("""
+    **Development Framework:**
+    <div class="tech-badge">Streamlit</div>
+    <div class="tech-badge">FastAPI</div>
+    <div class="tech-badge">Python</div>
+    <div class="tech-badge">Pandas</div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    **Advanced Features:**
+    <div class="tech-badge">Real-time Processing</div>
+    <div class="tech-badge">Multi-language</div>
+    <div class="tech-badge">Quality Evaluation</div>
+    <div class="tech-badge">Memory Management</div>
+    """, unsafe_allow_html=True)
+
+# Application showcase
+st.markdown("---")
+st.markdown("## 🎨 Application Portfolio")
+
+# Create feature cards for each application
+applications = [
+    {
+        "title": "🎯 Smart Text Redaction & Style Transfer",
+        "description": "Transform any text to match your brand voice with intelligent tone and dialect conversion.",
+        "features": ["Tone Conversion (Formal/Informal)", "Dialect Adaptation (US/UK)", "Content Redaction", "Brand Voice Consistency"],
+        "use_cases": ["Marketing Content", "International Communications", "Brand Standardization"],
+        "page": "smart_text_style.py"
+    },
+    {
+        "title": "📝 AI Blog Post Generator", 
+        "description": "Generate professional, SEO-optimized blog content tailored to your industry and audience.",
+        "features": ["Topic-based Generation", "Word Count Control", "SEO Optimization", "Industry Expertise"],
+        "use_cases": ["Content Marketing", "Thought Leadership", "SEO Strategy"],
+        "page": "blog_post_generator.py"
+    },
+    {
+        "title": "💬 Intelligent Chatbot",
+        "description": "Context-aware conversational AI with persistent memory for enhanced customer interactions.",
+        "features": ["Conversation Memory", "Context Awareness", "Natural Responses", "Session Management"],
+        "use_cases": ["Customer Support", "Sales Assistance", "Internal Help Desk"],
+        "page": "chatbot.py"
+    },
+    {
+        "title": "📊 RAG System Evaluator",
+        "description": "Quality assurance tool for Retrieval-Augmented Generation systems with accuracy metrics.",
+        "features": ["Answer Validation", "Quality Scoring", "Hallucination Detection", "Performance Analytics"],
+        "use_cases": ["AI Quality Assurance", "System Validation", "Performance Monitoring"],
+        "page": "evaluate_q_and_a_from_long_document.py"
+    },
+    {
+        "title": "🔍 Smart Review Analyzer",
+        "description": "Extract actionable insights from customer reviews with sentiment and delivery analysis.",
+        "features": ["Sentiment Analysis", "Delivery Tracking", "Price Perception", "Structured Output"],
+        "use_cases": ["Customer Insights", "Product Analysis", "Market Research"],
+        "page": "extract_json_from_review.py"
+    },
+    {
+        "title": "📑 Advanced Document Summarizer",
+        "description": "Process long documents with intelligent chunking and comprehensive summarization.",
+        "features": ["Large Document Processing", "Intelligent Chunking", "Context Preservation", "Multiple Formats"],
+        "use_cases": ["Research Analysis", "Report Generation", "Knowledge Extraction"],
+        "page": "split_and_summarize.py"
+    },
+    {
+        "title": "⚡ Quick Text Summarizer",
+        "description": "Instant text summarization for rapid content processing and analysis.",
+        "features": ["Real-time Processing", "Multiple Summary Lengths", "Key Point Extraction", "Fast Performance"],
+        "use_cases": ["Content Curation", "Meeting Notes", "Research Briefs"],
+        "page": "text_summarization.py"
+    },
+    {
+        "title": "🌍 Multi-Language Translator",
+        "description": "Specialized translation service with focus on Nigerian languages and cultural context.",
+        "features": ["Nigerian Languages", "Cultural Context", "Technical Translation", "Real-time Processing"],
+        "use_cases": ["International Business", "Cultural Communication", "Educational Content"],
+        "page": "translator.py"
+    }
+]
+
+# Display applications in a grid
+for i in range(0, len(applications), 2):
+    col1, col2 = st.columns(2)
     
-# Output
-st.markdown("### Your Re-written text:")
+    for j, col in enumerate([col1, col2]):
+        if i + j < len(applications):
+            app = applications[i + j]
+            with col:
+                st.markdown(f"""
+                <div class="demo-section">
+                    <h3>{app['title']}</h3>
+                    <p>{app['description']}</p>
+                    
+                    <h4>🔧 Key Features:</h4>
+                    <ul>
+                        {''.join([f'<li>{feature}</li>' for feature in app['features']])}
+                    </ul>
+                    
+                    <h4>💼 Business Use Cases:</h4>
+                    <ul>
+                        {''.join([f'<li>{use_case}</li>' for use_case in app['use_cases']])}
+                    </ul>
+                </div>
+                """, unsafe_allow_html=True)
 
-if draft_input:
-    if not openai_api_key:
-        st.warning('Please insert OpenAI API Key. \
-            Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)', 
-            icon="⚠️")
-        st.stop()
+# Call to action
+st.markdown("---")
+st.markdown("""
+## 🚀 Ready to Transform Your Business?
 
-    llm = load_LLM(openai_api_key=openai_api_key)
+Our AI solutions are designed to integrate seamlessly into your existing workflows, providing immediate value and long-term competitive advantages.
 
-    prompt_with_draft = prompt.format(
-        tone=option_tone, 
-        dialect=option_dialect, 
-        draft=draft_input
-    )
+### Next Steps:
+1. **Explore** the demos using the sidebar navigation
+2. **Experience** the power of each AI application
+3. **Contact us** to discuss your specific requirements
+4. **Get a custom solution** tailored to your business needs
 
-    improved_redaction = llm(prompt_with_draft)
+### Why Choose GenAI Expertise?
+- **Production-Ready Solutions**: All demos represent deployable technology
+- **Custom Development**: Tailored to your specific business requirements  
+- **Ongoing Support**: Comprehensive maintenance and updates
+- **Scalable Architecture**: Grows with your business needs
+""")
 
-    st.write(improved_redaction)
+# Footer
+st.markdown("---")
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""
+    **📧 Contact Information**
+    - Website: [GenAIExpertise.com](https://genaiexpertise.com)
+    - Email: Contact via website
+    - Support: Professional AI consulting
+    """)
+
+with col2:
+    st.markdown("""
+    **🛠️ Services Offered**
+    - Custom AI Development
+    - RAG System Implementation
+    - AI Strategy Consulting
+    - Training & Support
+    """)
+
+with col3:
+    st.markdown("""
+    **🎯 Industries Served**
+    - E-commerce & Retail
+    - Healthcare & Medical
+    - Education & Training
+    - Financial Services
+    """)
+
+st.markdown("""
+---
+<div style='text-align: center; color: #666; padding: 1rem;'>
+    <em>© 2024 GenAI Expertise. Transforming businesses through intelligent AI solutions.</em>
+</div>
+""", unsafe_allow_html=True)
