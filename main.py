@@ -181,56 +181,56 @@ applications = [
         "description": "Transform any text to match your brand voice with intelligent tone and dialect conversion.",
         "features": ["Tone Conversion (Formal/Informal)", "Dialect Adaptation (US/UK)", "Content Redaction", "Brand Voice Consistency"],
         "use_cases": ["Marketing Content", "International Communications", "Brand Standardization"],
-        "page": "smart_text_style.py"
+        "page": "pages/smart_text_style.py"
     },
     {
         "title": "📝 AI Blog Post Generator", 
         "description": "Generate professional, SEO-optimized blog content tailored to your industry and audience.",
         "features": ["Topic-based Generation", "Word Count Control", "SEO Optimization", "Industry Expertise"],
         "use_cases": ["Content Marketing", "Thought Leadership", "SEO Strategy"],
-        "page": "blog_post_generator.py"
+        "page": "pages/blog_post_generator.py"
     },
     {
         "title": "💬 Intelligent Chatbot",
         "description": "Context-aware conversational AI with persistent memory for enhanced customer interactions.",
         "features": ["Conversation Memory", "Context Awareness", "Natural Responses", "Session Management"],
         "use_cases": ["Customer Support", "Sales Assistance", "Internal Help Desk"],
-        "page": "chatbot.py"
+        "page": "pages/chatbot.py"
     },
     {
         "title": "📊 RAG System Evaluator",
         "description": "Quality assurance tool for Retrieval-Augmented Generation systems with accuracy metrics.",
         "features": ["Answer Validation", "Quality Scoring", "Hallucination Detection", "Performance Analytics"],
         "use_cases": ["AI Quality Assurance", "System Validation", "Performance Monitoring"],
-        "page": "evaluate_q_and_a_from_long_document.py"
+        "page": "pages/evaluate_q_and_a_from_long_document.py"
     },
     {
         "title": "🔍 Smart Review Analyzer",
         "description": "Extract actionable insights from customer reviews with sentiment and delivery analysis.",
         "features": ["Sentiment Analysis", "Delivery Tracking", "Price Perception", "Structured Output"],
         "use_cases": ["Customer Insights", "Product Analysis", "Market Research"],
-        "page": "extract_json_from_review.py"
+        "page": "pages/extract_json_from_review.py"
     },
     {
         "title": "📑 Advanced Document Summarizer",
         "description": "Process long documents with intelligent chunking and comprehensive summarization.",
         "features": ["Large Document Processing", "Intelligent Chunking", "Context Preservation", "Multiple Formats"],
         "use_cases": ["Research Analysis", "Report Generation", "Knowledge Extraction"],
-        "page": "split_and_summarize.py"
+        "page": "pages/split_and_summarize.py"
     },
     {
         "title": "⚡ Quick Text Summarizer",
         "description": "Instant text summarization for rapid content processing and analysis.",
         "features": ["Real-time Processing", "Multiple Summary Lengths", "Key Point Extraction", "Fast Performance"],
         "use_cases": ["Content Curation", "Meeting Notes", "Research Briefs"],
-        "page": "text_summarization.py"
+        "page": "pages/text_summarization.py"
     },
     {
         "title": "🌍 Multi-Language Translator",
         "description": "Specialized translation service with focus on Nigerian languages and cultural context.",
         "features": ["Nigerian Languages", "Cultural Context", "Technical Translation", "Real-time Processing"],
         "use_cases": ["International Business", "Cultural Communication", "Educational Content"],
-        "page": "translator.py"
+        "page": "pages/translator.py"
     }
 ]
 
