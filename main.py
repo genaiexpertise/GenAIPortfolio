@@ -1,6 +1,7 @@
 import streamlit as st
 from pathlib import Path
 import sys
+import streamlit.components.v1 as components
 
 # Add the current directory to Python path for imports
 sys.path.append(str(Path(__file__).parent))
@@ -40,11 +41,37 @@ st.markdown("""
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .demo-section {
-        background: white;
-        padding: 2rem;
+        background: #f8f9fa;
+        padding: 1.5rem;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         margin: 1rem 0;
+        border-left: 4px solid #667eea;
+        height: 100%;
+    }
+    .demo-section h3 {
+        color: #333;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    .demo-section h4 {
+        color: #666;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+    .demo-section ul {
+        margin: 0.5rem 0;
+        padding-left: 1.2rem;
+    }
+    .demo-section li {
+        margin-bottom: 0.3rem;
+        color: #555;
+    }
+    .demo-section p {
+        color: #666;
+        margin-bottom: 1rem;
+        line-height: 1.5;
     }
     .tech-badge {
         background: #e3f2fd;
@@ -207,30 +234,31 @@ applications = [
     }
 ]
 
-# Display applications in a grid
+# Display applications in a grid using HTML blocks
 for i in range(0, len(applications), 2):
     col1, col2 = st.columns(2)
     
     for j, col in enumerate([col1, col2]):
         if i + j < len(applications):
             app = applications[i + j]
+            html_block = f"""
+            <div class="demo-section">
+                <h3>{app['title']}</h3>
+                <p>{app['description']}</p>
+                
+                <h4>🔧 Key Features:</h4>
+                <ul>
+                    {''.join([f'<li>{feature}</li>' for feature in app['features']])}
+                </ul>
+                
+                <h4>💼 Business Use Cases:</h4>
+                <ul>
+                    {''.join([f'<li>{use_case}</li>' for use_case in app['use_cases']])}
+                </ul>
+            </div>
+            """
             with col:
-                st.markdown(f"""
-                <div class="demo-section">
-                    <h3>{app['title']}</h3>
-                    <p>{app['description']}</p>
-                    
-                    <h4>🔧 Key Features:</h4>
-                    <ul>
-                        {''.join([f'<li>{feature}</li>' for feature in app['features']])}
-                    </ul>
-                    
-                    <h4>💼 Business Use Cases:</h4>
-                    <ul>
-                        {''.join([f'<li>{use_case}</li>' for use_case in app['use_cases']])}
-                    </ul>
-                </div>
-                """, unsafe_allow_html=True)
+                components.html(html_block, height=400, scrolling=True)
 
 # Call to action
 st.markdown("---")
