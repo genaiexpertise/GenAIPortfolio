@@ -152,12 +152,12 @@ polars>=0.20.0  # Fast DataFrame library
 duckdb>=0.9.0  # Embedded analytical database
 
 # API Documentation
-redoc>=2.1.0  # API documentation
-swagger-ui-bundle>=0.0.9
+# redoc  # API documentation
+# swagger-ui-bundle>=0.0.9
 
 # Caching & Performance
-redis>=5.0.0  # Redis integration
-memcached>=1.6.0  # Memcached support
+# redis>=5.0.0  # Redis integration
+# memcached>=1.6.0  # Memcached support
 
 # Optional: GPU Support (uncomment if needed)
 # torch>=2.0.0  # PyTorch for advanced ML

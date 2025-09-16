@@ -1,0 +1,54 @@
+# flyctl launch added from .gitignore
+**\.env 
+**\.streamlit\secrets.toml 
+**\.ipynb_checkpoints 
+
+**\notebooks\data
+
+# flyctl launch added from notebooks\data\thefuzz-master\.gitignore
+notebooks\data\thefuzz-master\**\*.py[oc]
+
+# Temp files
+notebooks\data\thefuzz-master\**\*~
+notebooks\data\thefuzz-master\**\~*
+notebooks\data\thefuzz-master\**\.*~
+notebooks\data\thefuzz-master\**\#*
+notebooks\data\thefuzz-master\**\.#*
+notebooks\data\thefuzz-master\**\*#
+
+# Build files
+notebooks\data\thefuzz-master\**\build
+notebooks\data\thefuzz-master\**\dist
+notebooks\data\thefuzz-master\**\pkg
+notebooks\data\thefuzz-master\**\*.egg
+notebooks\data\thefuzz-master\**\*.egg-info
+
+# Debian Files
+notebooks\data\thefuzz-master\**\debian\files
+notebooks\data\thefuzz-master\**\debian\python-beaver*
+
+# Sphinx build
+notebooks\data\thefuzz-master\**\doc\_build
+
+# Generated man page
+notebooks\data\thefuzz-master\**\doc\aws_hostname.1
+
+# tox
+notebooks\data\thefuzz-master\**\.tox
+
+# Hypothesis - keep the examples database
+notebooks\data\thefuzz-master\**\.hypothesis\tmp
+notebooks\data\thefuzz-master\**\.hypothesis\unicodedata
+notebooks\data\thefuzz-master\**\.hypothesis
+
+# pytest
+notebooks\data\thefuzz-master\**\.cache
+notebooks\data\thefuzz-master\**\.pytest_cache
+notebooks\data\thefuzz-master\**\__pycache__
+
+# Pycharm
+notebooks\data\thefuzz-master\**\.idea
+
+# vscode
+notebooks\data\thefuzz-master\**\.vscode
+fly.toml
