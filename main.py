@@ -231,6 +231,13 @@ applications = [
         "features": ["Nigerian Languages", "Cultural Context", "Technical Translation", "Real-time Processing"],
         "use_cases": ["International Business", "Cultural Communication", "Educational Content"],
         "page": "pages/translator.py"
+    },
+     {
+        "title": "📺 YouTube & Web Content Summarizer",
+        "description": "Transform hours of video and reading into actionable insights",
+        "features":  ["Large Document Processing", "Intelligent Chunking", "Context Preservation", "Multiple Formats"],
+        "use_cases": ["Content Curation", "Meeting Notes", "Research Briefs"],
+        "page": "pages/Enhanced_YouTube_Web_Content_Summarizer.py"
     }
 ]
 

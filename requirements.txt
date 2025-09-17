@@ -173,3 +173,7 @@ sentry-sdk[streamlit]>=1.32.0  # Error tracking
 # Note: Some packages may require specific installation commands:
 # pip install faiss-cpu  # For FAISS vector database
 # pip install torch --index-url https://download.pytorch.org/whl/cpu  # For CPU-only PyTorch
+
+
+validators==0.28.1
+langchain-groq==0.2.1
