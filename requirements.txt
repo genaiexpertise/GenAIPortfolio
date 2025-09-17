@@ -175,5 +175,5 @@ sentry-sdk[streamlit]>=1.32.0  # Error tracking
 # pip install torch --index-url https://download.pytorch.org/whl/cpu  # For CPU-only PyTorch
 
 
-validators==0.28.1
-langchain-groq==0.2.1
+validators
+langchain-groq
